@@ -7,6 +7,7 @@ import random
 import numpy as np
 from CF.UserCF import UserCF
 from CF.ItermCF import ItemCF
+from MF.MF import MF
 from sklearn.metrics import mean_squared_error
 from matplotlib import pyplot as plt
 
@@ -219,9 +220,10 @@ if __name__ == "__main__":
     test_data=load2(test_file)
 
     # cf=UserCF()
-    cf=ItemCF()
-    cf.train(train_data[:,:-1],train_data[:,-1])
-    predict_y=cf.predict(test_data[:,:-1])
+    # model=ItemCF()
+    model=MF()
+    model.train(train_data[:,:-1],train_data[:,-1])
+    predict_y=model.predict(test_data[:,:-1])
 
     plt.scatter(test_data[:,-1],predict_y)
     plt.xlabel('true rating')
